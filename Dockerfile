@@ -1,10 +1,13 @@
-# Use an official Python runtime as a parent image
+# Use an official python runtime as a parent image
 FROM python:slim
 
 LABEL maintainer="avthatte@gmail.com"
 
 # Set the working directory to /notebooks within the container
 WORKDIR /notebooks
+
+# Set the exposed port for jupyter notebook
+EXPOSE 8888
 
 # Install the necessary libraries for graphviz
 RUN apt-get update && apt-get install -y \
@@ -22,6 +25,7 @@ RUN apt-get update && apt-get install -y \
 # Install the necessary python libraries
 RUN pip3 install \
     graphviz \
+    h5py \
     jupyter \
     keras \
     matplotlib \
